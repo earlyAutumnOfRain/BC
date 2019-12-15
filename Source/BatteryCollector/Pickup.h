@@ -24,8 +24,18 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	FORCEINLINE class UStaticMeshComponent * GetMesh() const { return PickupMesh; }
+
+	UFUNCTION(BlueprintPure,Category = "Pickup")
+	bool IsActive();
+
+	UFUNCTION(BlueprintCallable, Category = "Pickup")
+	void SetActive(bool NewPickupState);
+protected:
+	/*True when the pickup can be used, and false when  pickup is deactivated */
+	bool bIsActive;
 private:
 	
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category = "Pickup", meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* PickupMesh;
+
 };
